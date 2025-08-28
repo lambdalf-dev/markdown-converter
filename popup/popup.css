@@ -107,8 +107,39 @@ h1 {
   margin-bottom: 15px;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.copy-btn, .download-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copy-btn {
+  background: #9b59b6;
+  color: white;
+}
+
+.copy-btn:hover {
+  background: #8e44ad;
+}
+
+.copy-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
 .download-btn {
   background: #27ae60;
+  color: white;
 }
 
 .download-btn:hover {

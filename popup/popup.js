@@ -1,3 +1,7 @@
+// Module-level state for storing conversion results
+let lastMarkdown = null;
+let lastFilename = null;
+
 document.addEventListener('DOMContentLoaded', function() {
   const convertBtn = document.getElementById('convertBtn');
   const status = document.getElementById('status');
@@ -7,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const result = document.getElementById('result');
   const resultText = document.getElementById('resultText');
   const downloadBtn = document.getElementById('downloadBtn');
+  const copyBtn = document.getElementById('copyBtn');
 
   // Convert button click handler
   convertBtn.addEventListener('click', async function() {
@@ -55,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (!conversionResult || conversionResult.error) {
         throw new Error(conversionResult?.error || 'Conversion failed');
-      }
+      } 
 
       // Show success result
       resultText.textContent = `Successfully converted "${conversionResult.title}" to Markdown`;
@@ -91,6 +96,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clean up the blob URL after a delay
         setTimeout(() => URL.revokeObjectURL(url), 10000);
       });
+    }
+  });
+
+  // Copy button click handler
+  copyBtn.addEventListener('click', async function() {
+    if (!lastMarkdown) return;
+    try {
+      await navigator.clipboard.writeText(lastMarkdown);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => (copyBtn.textContent = 'Copy to Clipboard'), 1200);
+    } catch (e) {
+      console.error('Clipboard copy failed:', e);
+      copyBtn.textContent = 'Copy failed';
+      setTimeout(() => (copyBtn.textContent = 'Copy to Clipboard'), 1500);
     }
   });
 });
