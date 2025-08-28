@@ -6,7 +6,7 @@ describe('Copy to Clipboard button', () => {
       <button id="downloadBtn" disabled></button>
       <button id="copyBtn" disabled></button>
       <div id="status"></div>
-      <div id="progress"><div id="progressFill"></div></div>
+      <div id="progress"><div id="progressFill"></div><div id="progressText"></div></div>
       <div id="result"><p id="resultText"></p></div>
     `;
 
@@ -20,6 +20,23 @@ describe('Copy to Clipboard button', () => {
           filename: 'title-2025-08-28.md',
           title: 'Test Page'
         })
+      },
+      scripting: {
+        executeScript: jest.fn((injection) => {
+          // First call (files injection): return nothing meaningful
+          if (injection.files) return Promise.resolve([{}]);
+          // Second call (func call): return conversion result
+          if (injection.func) {
+            return Promise.resolve([{
+              result: { 
+                markdown: '# Title\n\nThis is test content', 
+                filename: 'title-2025-08-28.md', 
+                title: 'Test Page' 
+              }
+            }]);
+          }
+          return Promise.resolve([{}]);
+        }),
       },
       downloads: { download: jest.fn().mockResolvedValue(42) },
     };

@@ -6,8 +6,8 @@ describe('popup.js executeScript shape', () => {
     document.body.innerHTML = `
       <button id="convertBtn"></button>
       <div id="status"></div>
-      <div id="progress"><div id="progressFill"></div></div>
-      <div id="result"><p id="resultText"></p><button id="downloadBtn"></button></div>
+      <div id="progress"><div id="progressFill"></div><div id="progressText"></div></div>
+      <div id="result"><p id="resultText"></p><button id="downloadBtn"></button><button id="copyBtn"></button></div>
     `;
 
     // Mock chrome APIs
