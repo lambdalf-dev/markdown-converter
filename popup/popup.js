@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const downloadBtn = document.getElementById('downloadBtn');
   const copyBtn = document.getElementById('copyBtn');
 
+  // Initialize button text content
+  downloadBtn.textContent = 'Download Markdown';
+  copyBtn.textContent = 'Copy to Clipboard';
+
   // Convert button click handler
   convertBtn.addEventListener('click', async function() {
     try {
@@ -67,9 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
       result.style.display = 'block';
       status.innerHTML = '<p>Conversion complete!</p>';
       
-      // Store the markdown content for download
+      // Store the markdown content for download and copy
       window.markdownContent = conversionResult.markdown;
       window.filename = conversionResult.filename;
+      lastMarkdown = conversionResult.markdown;
+      
+      // Enable download and copy buttons
+      downloadBtn.disabled = false;
+      copyBtn.disabled = false;
 
     } catch (error) {
       console.error('Conversion error:', error);
