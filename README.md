@@ -15,7 +15,7 @@ A Chrome extension that converts web pages to downloadable markdown format.
 1. Clone this repository
 2. Open Chrome and go to `chrome://extensions/`
 3. Enable "Developer mode"
-4. Click "Load unpacked" and select the `web-crawler-extension` folder
+4. Click "Load unpacked" and select the `markdown-converter` folder
 
 ## Chrome Web Store Deployment
 
@@ -32,8 +32,8 @@ A Chrome extension that converts web pages to downloadable markdown format.
 
 2. **Create a ZIP File**
    ```bash
-   cd web-crawler-extension
-   zip -r ../web-crawler-extension.zip . -x "*.git*" "*.DS_Store*" "*.md" "test/*" "utils/*"
+   cd markdown-converter
+   zip -r ../markdown-converter.zip . -x "*.git*" "*.DS_Store*" "*.md" "test/*" "utils/*"
    ```
 
 3. **Upload to Chrome Web Store**
@@ -84,13 +84,15 @@ A Chrome extension that converts web pages to downloadable markdown format.
 
 ### Project Structure
 ```
-web-crawler-extension/
+markdown-converter/
 ├── manifest.json          # Extension configuration
 ├── popup/                 # Extension popup interface
 ├── content/               # Content script for page processing
 ├── background/            # Background service worker
 ├── assets/                # Icons and images
-└── README.md             # This file
+├── LICENSE                # The  MIT license agreement
+├── PRIVACY_POLICY.md      # The privacy policy
+└── README.md              # This file
 ```
 
 ### Testing
